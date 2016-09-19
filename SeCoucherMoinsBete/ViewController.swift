@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var informationLabel: UILabel!
+    
+    @IBOutlet weak var showInfoButton: UIButton!
+    let informationsModel = InformationModel()
+    let colorModel = ColorModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        showRandomInfoAndColor()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +27,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func showNewInformation() {
+     showRandomInfoAndColor()
+    }
+    
+    func showRandomInfoAndColor () {
+        let randomInfo = informationsModel.getRandomInfo()
+        let randomColor = colorModel.getRandomColor()
+        informationLabel.text = randomInfo
+        view.backgroundColor = randomColor
+        showInfoButton.tintColor = randomColor
+    }
 
 }
 
